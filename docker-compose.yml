@@ -1,0 +1,43 @@
+services:
+  webapp:
+    build: 
+      context: .
+      dockerfile: src/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=AppDB;User=sa;Password=StrongP@ssw0rd;TrustServerCertificate=True;Encrypt=False;
+      - ASPNETCORE_URLS=http://+:8080 
+    depends_on:
+      - sqlserver
+    networks:
+      - app
+      - app-tests
+
+  sqlserver:
+    build: ./sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=StrongP@ssw0rd
+      - MSSQL_PID=Developer
+      - MSSQL_OPTION_FLAGS = -T7806
+    volumes:
+      - sql-data:/var/opt/mssql
+    networks:
+      - app
+  
+  tests:
+      build:
+        context: .
+        dockerfile: test/Dockerfile 
+      networks:
+        - app-tests
+
+volumes:
+  sql-data:
+
+networks:
+  app:
+    driver: bridge
+  app-tests:
+    driver: bridge
