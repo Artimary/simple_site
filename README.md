@@ -30,13 +30,13 @@ simple_site — это одностраничное веб-приложение 
 ## Установка
 
 1. **Клонируйте репозиторий:**
-   **git clone https://github.com/Artimary/simple_site.git**
-   **cd simple_site**
+   - git clone https://github.com/Artimary/simple_site.git
+   - cd simple_site
 
 2. **Запустите проект с помощью Docker**
 Выполните следующую команду в корне проекта: 
-**docker-compose build --no-cache**
-**docker-compose up**
+- docker-compose build --no-cache
+- docker-compose up
 
 ---
 
@@ -47,19 +47,19 @@ simple_site — это одностраничное веб-приложение 
 
 **Остановка приложения:**
 Чтобы остановить приложение, выполните: 
-**docker-compose down -v**
+- docker-compose down -v
 
 **Логи:**
 Логи контейнеров можно посмотреть с помощью команды:
-**docker-compose logs**
+- docker-compose logs
 
 **База данных**
 При запуске бд, чтобы войти используйте следующую команду:
-**docker exec -it simple_site-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P StrongP@ssw0rd -C**
+- docker exec -it simple_site-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P StrongP@ssw0rd -C
 Для просмотра созданной бд:
-**USE AppDB**
-**SELECT * FROM MouseData**
-**GO**
+- USE AppDB
+- SELECT * FROM MouseData 
+- GO
 
 ---
 
@@ -72,6 +72,6 @@ simple_site — это одностраничное веб-приложение 
 **MouseServiceTests.cs** — тесты для MouseService, проверяют вызов репозитория и логирование.
 
 **Локальное выполнение тестов**
-**cd test**
-**dotnet restore**
-**dotnet test**
+- cd test
+- dotnet restore
+- dotnet test
