@@ -30,12 +30,13 @@ simple_site — это одностраничное веб-приложение 
 ## Установка
 
 1. **Клонируйте репозиторий:**
-   git clone https://github.com/Artimary/simple_site
-   cd simple_site
+   **git clone https://github.com/Artimary/simple_site.git**
+   **cd simple_site**
 
 2. **Запустите проект с помощью Docker**
 Выполните следующую команду в корне проекта: 
-docker-compose up --build
+**docker-compose build --no-cache**
+**docker-compose up**
 
 ---
 
@@ -46,23 +47,31 @@ docker-compose up --build
 
 **Остановка приложения:**
 Чтобы остановить приложение, выполните: 
-docker-compose down
+**docker-compose down -v**
 
 **Логи:**
 Логи контейнеров можно посмотреть с помощью команды:
-docker-compose logs
+**docker-compose logs**
+
+**База данных**
+При запуске бд, чтобы войти используйте следующую команду:
+**docker exec -it simple_site-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P StrongP@ssw0rd -C**
+Для просмотра созданной бд:
+**USE AppDB**
+**SELECT * FROM MouseData**
+**GO**
 
 ---
 
 ## Юнит-тесты
 Проект включает юнит-тесты для проверки бизнес-логики и взаимодействия с репозиториями. Тесты написаны с использованием фреймворка xUnit и находятся в папке test.
 
-**Структура**
--- **HomeControllerTests.cs** — тесты для HomeController, проверяют вызов сервиса и логирование.
--- **MouseRepositoryTests.cs** — тесты для MouseRepository, проверяют добавление данных в контекст базы данных.
--- **MouseServiceTests.cs** — тесты для MouseService, проверяют вызов репозитория и логирование.
+**Структура:**
+**HomeControllerTests.cs** — тесты для HomeController, проверяют вызов сервиса и логирование.
+**MouseRepositoryTests.cs** — тесты для MouseRepository, проверяют добавление данных в контекст базы данных.
+**MouseServiceTests.cs** — тесты для MouseService, проверяют вызов репозитория и логирование.
 
 **Локальное выполнение тестов**
-cd test
-dotnet restore
-dotnet test
+**cd test**
+**dotnet restore**
+**dotnet test**
